@@ -1,0 +1,106 @@
+# unmount things
+d-i preseed/early_command                                   string      umount /media || true
+
+# regional setting
+d-i debian-installer/language                               string      en
+d-i debian-installer/country                                string      AU
+d-i debian-installer/locale                                 string      en_AU.UTF-8
+d-i debian-installer/splash                                 boolean     false
+d-i localechooser/supported-locales                         multiselect en_AU
+d-i pkgsel/install-language-support                         boolean     true
+
+# keyboard selection
+d-i console-setup/ask_detect                                boolean     false
+d-i keyboard-configuration/layoutcode                       string      us
+
+## network settings
+d-i netcfg/get_hostname                                     string      {{ hostname }}
+d-i netcfg/get_domain                                       string      {{ domain }}
+
+## NO network configuration.
+#d-i netcfg/enable boolean false
+
+### AUTO network configuration
+d-i netcfg/enable                                           boolean     true
+d-i netcfg/choose_interface                                 select      auto
+d-i netcfg/dhcp_timeout                                     string      60
+
+d-i netcfg/dhcp_failed                                      note
+d-i netcfg/dhcp_options                                     select      Configure network manually
+
+d-i hw-detect/load_firmware                                 boolean     true
+
+# mirror settings
+d-i mirror/http/mirror                                      select      au.archive.ubuntu.com
+d-i mirror/http/directory                                   string      /ubuntu
+d-i mirror/http/proxy                                       string
+
+# clock and timezone settings
+d-i time/zone                                               string      {{ timezone }}
+d-i clock-setup/utc                                         boolean     {{ utc }}
+d-i clock-setup/ntp                                         boolean     false
+
+### Partitioning
+
+d-i partman-auto/disk                                       string      /dev/sdb
+d-i partman-auto/purge_lvm_from_device                      boolean     true
+d-i partman-crypto/weak_passphrase                          boolean     true
+d-i partman-auto/method                                     string      crypto
+d-i partman-crypto/passphrase                               password    {{ DiskCryptPassword }}
+d-i partman-crypto/passphrase-again                         password    {{ DiskCryptPassword }}
+d-i partman-auto-lvm/new_vg_name                            string      laptop
+d-i partman-auto-lvm/guided_size                            string      max
+d-i partman-auto/expert_recipe_file                         string      /cdrom/preseed/{{ partitions_file }}
+d-i partman-md/device_remove_md                             boolean     true
+d-i partman-md/confirm                                      boolean     true
+d-i partman-lvm/device_remove_lvm                           boolean     true
+d-i partman-lvm/confirm                                     boolean     true
+d-i partman-lvm/confirm_nooverwrite                         boolean     true
+d-i partman-basicfilesystems/no_swap                        boolean     false
+d-i partman/confirm_write_new_label                         boolean     true
+d-i partman/choose_partition                                select      finish
+d-i partman/confirm                                         boolean     true
+d-i partman/confirm_nooverwrite                             boolean     true
+
+# user account setup
+d-i passwd/root-login                                       boolean     false
+d-i passwd/user-fullname                                    string      {{ UserFullName }}
+d-i passwd/username                                         string      {{ UserName }}
+d-i passwd/user-password                                    password    {{ UserPassword }}
+d-i passwd/user-password-again                              password    {{ UserPassword }}
+
+d-i user-setup/allow-password-weak                          boolean     true
+d-i user-setup/encrypt-home                                 boolean     false
+
+# configure apt
+d-i apt-setup/restricted                                    boolean     true
+d-i apt-setup/universe                                      boolean     true
+d-i apt-setup/backports                                     boolean     true
+d-i apt-setup/security-updates                              boolean     true
+
+# package selection
+tasksel tasksel/first                                       multiselect openssh-server
+
+d-i pkgsel/language-packs                                   multiselect en
+d-i pkgsel/upgrade                                          select      full-upgrade
+d-i pkgsel/update-policy                                    select      unattended-upgrades
+d-i pkgsel/updatedb                                         boolean     true
+d-i pkgsel/include                                          string      python python-pip python-jinja2
+
+popularity-contest popularity-contest/participate           boolean     false
+
+# grub boot loader
+d-i grub-installer/only_debian                              boolean     false
+d-i grub-installer/with_other_os                            boolean     true
+d-i grub-installer/bootdev                                  string      /dev/sdb
+
+# X config
+xserver-xorg xserver-xorg/config/device/driver              select      vesa
+xserver-xorg xserver-xorg/autodetect_monitor                boolean     true
+
+# finish installation
+d-i finish-install/reboot_in_progress                       note
+d-i finish-install/keep-consoles                            boolean     false
+d-i cdrom-detect/eject                                      boolean     false
+d-i debian-installer/exit/halt                              boolean     false
+d-i debian-installer/exit/poweroff                          boolean     false

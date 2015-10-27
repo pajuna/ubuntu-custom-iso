@@ -1,0 +1,29 @@
+LvmOneEncDisk ::
+
+350 50 351 ext4 $primary{ } $bootable{ }
+        mountpoint{ /boot }
+        method{ format }
+        format{ }
+        use_filesystem{ }
+        filesystem{ ext4 }
+.
+
+20480 50 20481 ext4 $lvmok{ }
+        mountpoint{ / }
+        lv_name{ slash }
+        in_vg { laptop }
+        method{ format }
+        format{ }
+        use_filesystem{ }
+        filesystem{ ext4 }
+.
+
+1020 100 1000000000 ext4 $lvmok{ }
+        mountpoint{ /home }
+        lv_name{ home }
+        in_vg { laptop }
+        method{ format }
+        format{ }
+        use_filesystem{ }
+        filesystem{ ext4 }
+.

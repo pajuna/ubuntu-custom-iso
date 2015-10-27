@@ -1,0 +1,71 @@
+---
+
+- name: Craft An automated Ubuntu JeOS iso
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - settings.yml
+  vars_prompt:
+    - name: UserPassword
+      prompt: "What is your user password"
+      private: yes
+  tasks:
+    - debug: msg="Password for {{ UserName }} is {{ UserPassword }}"
+    - debug: msg="The Password to unlock the crypted disk is {{ DiskCryptPassword }}"
+
+    - file: path=tmpbuild/newiso state=directory mode=0755
+    - file: path=tmpbuild/origiso state=directory mode=0755
+
+    - name: mount src_iso
+      sudo: true
+      command: "mount -oloop,ro ../iso/{{ src_iso }} tmpbuild/origiso/"
+
+    - name: rsync src_iso to tmp location for crafting dst_iso
+      synchronize: src=tmpbuild/origiso/ dest=tmpbuild/newiso
+
+    - name: Customizing syslinux - adding curses menu
+      sudo: true
+      copy: >
+        src="../files/menu.c32"
+        dest="tmpbuild/newiso/isolinux/"
+
+    - name: Customizing syslinux - tuning menu
+      sudo: true
+      template: >
+        src="../files/isolinux.cfg.j2"
+        dest="tmpbuild/newiso/isolinux/isolinux.cfg"
+
+    - name: Adding our Pressed file - from template
+      sudo: true
+      template: >
+        src="../files/{{ preseed_file }}.j2"
+        dest="tmpbuild/newiso/preseed/{{ preseed_file }}"
+
+    - name: Adding our expert partition recipe
+      sudo: true
+      copy: >
+        src="../files/{{ partitions_file }}"
+        dest="tmpbuild/newiso/preseed/"
+
+    - name: generating dst_iso
+      sudo: true
+      command: "mkisofs -D -r -V 'PAJUNA_UBUNTU' -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o '../../../iso/{{ dst_iso }}' ."
+      args:
+        chdir: tmpbuild/newiso
+        creates: "../../../iso/{{ dst_iso }}"
+
+    - name: Making iso bootable on usb sticks
+      sudo: true
+      command: "isohybrid ../iso/{{ dst_iso }}"
+
+    - name: Unmounting src_iso
+      sudo: true
+      command: "umount ../iso/{{ src_iso }}"
+
+    - name: Cleaning up temp files
+      sudo: true
+      file: path=tmpbuild state=absent
+      when: cleanup
+
+    - debug: msg="New iso baked - iso/{{ dst_iso }}"

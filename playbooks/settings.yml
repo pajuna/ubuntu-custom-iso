@@ -1,0 +1,20 @@
+---
+
+src_iso: "ubuntu-14.04.1-server-amd64+mac.iso"
+dst_iso: "ubuntu-14.04.1-jeos-amd64.iso"
+
+timezone: "Australia/Sydney"
+utc: true
+
+hostname: "pajuna"
+domain: "example.com"
+
+UserFullName: "Jane Doe"
+UserName: "pajuna"
+DiskCryptPassword: f00b4r
+
+preseed_file: "pajuna.seed"
+partitions_file: "LvmOneEncDisk.partman"
+
+
+cleanup: true
