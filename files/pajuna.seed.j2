@@ -85,9 +85,11 @@ d-i pkgsel/language-packs                                   multiselect en
 d-i pkgsel/upgrade                                          select      full-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades
 d-i pkgsel/updatedb                                         boolean     true
-d-i pkgsel/include                                          string      python python-pip python-jinja2
+d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev
 
 popularity-contest popularity-contest/participate           boolean     false
+
+d-i preseed/late_command                                    string      cp /cdrom/preseed/postinstall.sh /target/tmp/; in-target sh /tmp/postinstall.sh
 
 # grub boot loader
 d-i grub-installer/only_debian                              boolean     false
