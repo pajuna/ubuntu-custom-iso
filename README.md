@@ -2,12 +2,7 @@
 
 ## AIM
 
-To be able to boot to an USB drive and have a bare minimal Ubuntu LTS(JeOS) installed automatically, complete with encrypted LVM and Ansible already installed with the AIM of using Ansible to then build the rest of my Workstation:
-
-* choice of Destop Environment(Lubuntu, Xubuntu...)
-* developemnt tools
-* dotfiles
-* etc
+To automatically install just enough Ubuntu LTS (JeOS) to my workstation so that I can then use Ansible + [pajuna](https://github.com/pajuna/Ubuntu-LTS) to build out a complete workstation.
 
 ## Repo Contents
 
