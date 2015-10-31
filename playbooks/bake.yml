@@ -30,18 +30,18 @@
         src="../files/menu.c32"
         dest="tmpbuild/newiso/isolinux/"
 
+    - name: Customizing syslinux - tuning menu
+      sudo: true
+      template: >
+        src="../files/isolinux.cfg.j2"
+        dest="tmpbuild/newiso/isolinux/isolinux.cfg"
+
     - name: Copy postinstall script to iso
       sudo: true
       copy: >
         src="../files/postinstall.sh"
         dest="tmpbuild/newiso/preseed/"
         mode=0755
-
-    - name: Customizing syslinux - tuning menu
-      sudo: true
-      template: >
-        src="../files/isolinux.cfg.j2"
-        dest="tmpbuild/newiso/isolinux/isolinux.cfg"
 
     - name: Adding our Pressed file - from template
       sudo: true
