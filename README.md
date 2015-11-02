@@ -10,18 +10,19 @@ In here you will find an Ansible playbook that will remaster an Ubuntu LTS iso c
 
 ## Requirements
 
-The following packages should be installed (via apt):
+The following requirements should be met:
 
-* git
-* isolinux
-* genisoimage
-* python
-* python-pip
-* python-dev
-* python-jinja2
-
-Install Ansible via pip `sudo pip install -r requirements.txt`
-Have a copy of `ubuntu-14.04.1-server-amd64+mac.iso` available in the `iso/` directory.
+* Installed via apt-get
+  * git
+  * isolinux
+  * genisoimage
+  * python
+  * python-pip
+  * python-dev
+  * python-jinja2
+* Installed via python-pip
+  * ansible `sudo pip install ansible`
+* Have a copy of `ubuntu-14.04.1-server-amd64+mac.iso` available in the `iso/` directory.
 
 ## Building your custom Ubuntu LTS JeOS ISO
 
