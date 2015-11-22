@@ -42,7 +42,7 @@ d-i clock-setup/ntp                                         boolean     false
 
 ### Partitioning
 
-d-i partman-auto/disk                                       string      /dev/sdb
+d-i partman-auto/disk                                       string      /dev/sda
 d-i partman-auto/purge_lvm_from_device                      boolean     true
 d-i partman-crypto/weak_passphrase                          boolean     true
 d-i partman-auto/method                                     string      crypto
@@ -85,7 +85,7 @@ d-i pkgsel/language-packs                                   multiselect en
 d-i pkgsel/upgrade                                          select      full-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades
 d-i pkgsel/updatedb                                         boolean     true
-d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev git syslinux genisoimage
+d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev git syslinux genisoimage gpm 
 
 popularity-contest popularity-contest/participate           boolean     false
 
@@ -94,7 +94,7 @@ d-i preseed/late_command                                    string      cp /cdro
 # grub boot loader
 d-i grub-installer/only_debian                              boolean     false
 d-i grub-installer/with_other_os                            boolean     true
-d-i grub-installer/bootdev                                  string      /dev/sdb
+d-i grub-installer/bootdev                                  string      /dev/sda
 
 # X config
 xserver-xorg xserver-xorg/config/device/driver              select      vesa
