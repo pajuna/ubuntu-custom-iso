@@ -15,4 +15,5 @@ echo "ssh-add"  >> /home/lunix/getstarted.sh
 echo "" >> /home/lunix/getstarted.sh
 echo "git clone git@bitbucket.org:aussielunix/ansible-laptop.git /home/lunix/.ansible" >> /home/lunix/getstarted.sh
 echo "cd /home/lunix/.ansible" >> /home/lunix/getstarted.sh
-
+echo "echo 'you need to tune e/n/i'" >> /home/lunix/getstarted.sh
+echo "" >> /home/lunix/getstarted.sh
