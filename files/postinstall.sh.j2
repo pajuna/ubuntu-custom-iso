@@ -1,0 +1,21 @@
+#!/bin/sh
+
+pip install ansible
+
+cat > "/home/{{ UserName }}/pajuna_bootstrap.sh" << EOS
+#!/bin/bash
+
+set -eo pipefail
+
+mkdir /home/{{ UserName }}/.ssh
+cp -a * /home/{{ UserName }}/.ssh/
+chown -R {{ UserName }}:{{ UserName }} /home/{{ UserName }}/.ssh
+chmod -R 600 /home/{{ UserName }}.ssh
+chmod 700 /home/{{ UserName }}/.ssh
+eval "$(ssh-agent)"
+ssh-add
+git clone {{ Private_Pajuna_Laptop_Repo }} /home/{{ UserName }}/.ansible
+cd /home/{{ UserName }}/.ansible
+echo 'you need to tune e/n/i'
+EOS
+

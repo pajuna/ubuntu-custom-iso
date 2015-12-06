@@ -38,8 +38,8 @@
 
     - name: Copy postinstall script to iso
       sudo: true
-      copy: >
-        src="../files/postinstall.sh"
+      template: >
+        src="../files/postinstall.sh.j2"
         dest="tmpbuild/newiso/preseed/"
         mode=0755
 
