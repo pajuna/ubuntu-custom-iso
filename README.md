@@ -10,6 +10,8 @@ In here you will find an Ansible playbook that will remaster an Ubuntu LTS iso c
 
 ## Requirements
 
+`bootstrap.sh` will take care of the following (with the exception of downloading the iso) if you are on Ubuntu.  
+
 The following requirements should be met:
 
 * Installed via apt-get
