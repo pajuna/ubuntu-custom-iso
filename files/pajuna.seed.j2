@@ -2,11 +2,11 @@
 d-i preseed/early_command                                   string      umount /media || true
 
 # regional setting
-d-i debian-installer/language                               string      en
-d-i debian-installer/country                                string      AU
-d-i debian-installer/locale                                 string      en_AU.UTF-8
+d-i debian-installer/language                               string      {{ language }}
+d-i debian-installer/country                                string      {{ country }}
+d-i debian-installer/locale                                 string      {{ locale }}
 d-i debian-installer/splash                                 boolean     false
-d-i localechooser/supported-locales                         multiselect en_AU
+d-i localechooser/supported-locales                         multiselect {{ supported_locales | join(",") }}
 d-i pkgsel/install-language-support                         boolean     true
 
 # keyboard selection
@@ -85,7 +85,7 @@ d-i pkgsel/language-packs                                   multiselect en
 d-i pkgsel/upgrade                                          select      full-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades
 d-i pkgsel/updatedb                                         boolean     true
-d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev git syslinux genisoimage gpm 
+d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev git syslinux genisoimage gpm
 
 popularity-contest popularity-contest/participate           boolean     false
 
