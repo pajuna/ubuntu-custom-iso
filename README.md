@@ -24,7 +24,7 @@ The following requirements should be met:
   * python-jinja2
 * Installed via python-pip
   * ansible `sudo pip install ansible`
-* Have a copy of `ubuntu-14.04.1-server-amd64+mac.iso` available in the `iso/` directory.
+* Have a copy of `ubuntu-14.04.3-server-amd64.iso` available in the `iso/` directory.
 
 ## Building your custom Ubuntu LTS JeOS ISO
 
