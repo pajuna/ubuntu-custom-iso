@@ -35,6 +35,8 @@ Run the playbook
 ansible-playbook playbooks/bake.yml -K
 ```
 
+**Note: Currently only works with Ubuntu 14.04 Server amd64 iso**
+
 <table>
   <tr>
     <th>Author</th><td>Mick Pollard (aussielunix at g mail dot com)</td>
