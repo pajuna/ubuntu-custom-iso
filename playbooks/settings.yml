@@ -21,6 +21,6 @@ UserName: "lunix"
 DiskCryptPassword: f00b4r
 
 preseed_file: "pajuna.seed"
-partitions_file: "LvmOneEncDiskOnePart.partman"
+partitions_file: "LvmOneEncDisk.partman"
 
 cleanup: true
