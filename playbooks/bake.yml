@@ -40,7 +40,7 @@
       become: true
       template: >
         src="../files/postinstall.sh.j2"
-        dest="tmpbuild/newiso/preseed/"
+        dest="tmpbuild/newiso/preseed/postinstall.sh"
         mode=0755
 
     - name: Adding our Pressed file - from template
