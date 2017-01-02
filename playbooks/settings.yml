@@ -1,7 +1,7 @@
 ---
 
-src_iso: "ubuntu-14.04.3-server-amd64.iso"
-dst_iso: "ubuntu-14.04.3-jeos-amd64.iso"
+src_iso: "ubuntu-14.04.5-server-amd64.iso"
+dst_iso: "ubuntu-14.04.5-jeos-amd64.iso"
 
 Private_Pajuna_Laptop_Repo: "git@bitbucket.org:aussielunix/ansible-laptop.git"
 
