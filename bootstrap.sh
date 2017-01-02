@@ -5,6 +5,7 @@ set -eo pipefail
 sudo apt-get install -y \
   git                   \
   isolinux              \
+  syslinux-utils        \
   genisoimage           \
   python                \
   python-pip            \
