@@ -3,7 +3,7 @@
 src_iso: "ubuntu-14.04.5-server-amd64.iso"
 dst_iso: "ubuntu-14.04.5-jeos-amd64.iso"
 
-Private_Pajuna_Laptop_Repo: "git@bitbucket.org:aussielunix/ansible-laptop.git"
+Private_Pajuna_Laptop_Repo: "git@github.com:aussielunix/mystation.git"
 
 language: "en"
 country: "AU"
