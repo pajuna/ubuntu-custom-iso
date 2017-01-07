@@ -2,7 +2,7 @@
 
 ## AIM
 
-To automatically install just enough Ubuntu LTS (JeOS) to my workstation so that I can then use Ansible + [pajuna](https://github.com/pajuna/Ubuntu-LTS) to build out a complete workstation.
+To automatically install just enough Ubuntu Server LTS (JeOS) to my workstation, with full disk encryption, so that I can then use Ansible + [pajuna](https://github.com/pajuna/Ubuntu-LTS) to build out a complete workstation.
 
 ## Repo Contents
 
@@ -10,11 +10,8 @@ In here you will find an Ansible playbook that will remaster an Ubuntu LTS iso c
 
 ## Requirements
 
-`bootstrap.sh` will take care of the following (with the exception of downloading the iso) if you are on Ubuntu.  
+The following requirements should be installed:
 
-The following requirements should be met:
-
-* Installed via apt-get
   * git
   * isolinux
   * genisoimage
@@ -22,9 +19,8 @@ The following requirements should be met:
   * python-pip
   * python-dev
   * python-jinja2
-* Installed via python-pip
-  * ansible `sudo pip install ansible`
-* Have a copy of `ubuntu-14.04.3-server-amd64.iso` available in the `iso/` directory.
+  * ansible
+  * Have a copy of `ubuntu-14.04.*-server-amd64.iso` available in the `iso/` directory.
 
 ## Building your custom Ubuntu LTS JeOS ISO
 
@@ -34,6 +30,14 @@ Run the playbook
 ``` bash
 ansible-playbook playbooks/bake.yml -K
 ```
+
+## Installing Ubuntu JeOS
+
+'Burn' the iso to an USB or CDROM and boot it.
+
+`dd if=iso/ubuntu-14.04.5-jeos-amd64.iso of=/dev/sd*` # pick the correct device for you USB or CDROM.
+
+**Warning: this will wipe your /dev/sda and automatically install Ubuntu**
 
 **Note: Currently only works with Ubuntu 14.04 Server amd64 iso and legacy bios**
 
