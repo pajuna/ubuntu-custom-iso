@@ -11,9 +11,6 @@
       prompt: "What is your user password"
       private: yes
   tasks:
-    - debug: msg = "Password for {{UserName}} is {{UserPassword}}"
-    - debug: msg = "The Password to unlock the crypted disk is {{DiskCryptPassword}}"
-
     - file:
         path: tmpbuild/newiso
         state: directory
@@ -21,6 +18,11 @@
 
     - file:
         path: tmpbuild/origiso
+        state: directory
+        mode: 0755
+
+    - file:
+        path: tmpbuild/newiso/custom
         state: directory
         mode: 0755
 
@@ -33,23 +35,34 @@
         src: tmpbuild/origiso/
         dest: tmpbuild/newiso
 
-    - name: Customizing syslinux - adding curses menu
+    - name: Customising syslinux - adding curses menu
       become: true
       copy:
         src: "../files/menu.c32"
         dest: "tmpbuild/newiso/isolinux/"
 
-    - name: Customizing syslinux - tuning menu
+    - name: Customising syslinux - tuning menu
       become: true
       template:
         src: "../files/isolinux.cfg.j2"
         dest: "tmpbuild/newiso/isolinux/isolinux.cfg"
 
+    - stat: path="files/ssh.tar.gpg"
+      register: sshtarball
+
+    - set_fact:
+        preseed_late_command: "cp /cdrom/custom/postinstall.sh /target/tmp/; in-target sh /tmp/postinstall.sh"
+        when: sshtarball.stat.exists == False
+
+    - set_fact:
+        preseed_late_command: "cp /cdrom/custom/postinstall.sh /target/tmp/; cp /cdrom/custom/ssh.tar.gpg /target/home/{{ UserName }}; in-target sh /tmp/postinstall.sh"
+      when: sshtarball.stat.exists == True
+
     - name: Copy postinstall script to iso
       become: true
       template:
         src: "../files/postinstall.sh.j2"
-        dest: "tmpbuild/newiso/preseed/postinstall.sh"
+        dest: "tmpbuild/newiso/custom/postinstall.sh"
         mode: 0755
 
     - name: Adding our Pressed file - from template
@@ -62,7 +75,13 @@
       become: true
       copy:
         src: "../files/{{ partitions_file }}"
-        dest: "tmpbuild/newiso/preseed/"
+        dest: "tmpbuild/newiso/custom/"
+
+    - name: Add ssh keys encrypted tarball
+      copy:
+        src: "../files/ssh.tar.gpg"
+        dest: "tmpbuild/newiso/custom/"
+      when: sshtarball.stat.exists == True
 
     - name: generating dst_iso
       become: true
@@ -84,4 +103,4 @@
       file: path=tmpbuild state=absent
       when: cleanup
 
-    - debug: msg = "New iso baked - iso/{{ dst_iso }}"
+    - debug: msg="New iso baked - iso/{{ dst_iso }}"
