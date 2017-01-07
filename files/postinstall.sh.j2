@@ -9,11 +9,12 @@ mkdir /home/{{ UserName }}/.ssh
 chmod 700 /home/{{ UserName }}/.ssh
 if [[ -f 'ssh.tar.gpg' ]]
 then
-  gpg --no-default-keyring --secret-keyring /dev/null --decrypt | tar xv -C ~/.ssh/
+  gpg --no-default-keyring --secret-keyring /dev/null --decrypt ssh.tar.gpg | tar xv -C ~/.ssh/
+  rm -rf /home/{{ UserName }}/.gnupg
 fi
 git clone {{ Private_Pajuna_Laptop_Repo }} /home/{{ UserName }}/.ansible
-cd /home/{{ UserName }}/.ansible
 EOS
 
 chmod 0700 /home/{{ UserName }}/pajuna_bootstrap.sh
 chown {{ UserName }}:{{ UserName }} /home/{{ UserName }}/pajuna_bootstrap.sh
+
