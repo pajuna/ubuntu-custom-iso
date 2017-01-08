@@ -15,9 +15,13 @@ fi
 rm -rf /home/{{ UserName }}/.ansible
 echo "You should now start an ssh-agent and add your key to it."
 echo ""
-echo "#eval \"\\\$(ssh-agent -s)\""
-echo "# ssh-add"
-echo "#"
+echo "eval \"\\\$(ssh-agent -s)\""
+echo "ssh-add"
+echo ""
+echo "Now you should bootstrap Pajuna/mystation."
+echo ""
+echo "curl -sL http://pajuna.it | bash"
+echo ""
 EOS
 
 chmod 0700 /home/{{ UserName }}/pajuna_bootstrap.sh
