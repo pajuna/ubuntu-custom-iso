@@ -13,6 +13,7 @@ then
   rm -rf /home/{{ UserName }}/.gnupg
 fi
 rm -rf /home/{{ UserName }}/.ansible
+rm -rf /home/{{ UserName }}/ssh.tar.gpg
 echo "You should now start an ssh-agent and add your key to it."
 echo ""
 echo "eval \"\\\$(ssh-agent -s)\""
@@ -22,6 +23,7 @@ echo "Now you should bootstrap Pajuna/mystation."
 echo ""
 echo "curl -sL http://pajuna.it | bash"
 echo ""
+rm -f /home/{{ UserName }}/pajuna_bootstrap.sh
 EOS
 
 chmod 0700 /home/{{ UserName }}/pajuna_bootstrap.sh
