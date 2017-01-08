@@ -6,7 +6,7 @@ To automatically install just enough Ubuntu Server LTS (JeOS) to my workstation,
 
 ## Repo Contents
 
-In here you will find an Ansible playbook that will remaster an Ubuntu LTS iso complete with preseed, encrypted LVM partman recipe and postinstall script.
+In here you will find an Ansible playbook that will remaster an Ubuntu LTS iso complete with preseed, encrypted LVM partman recipe, postinstall script and an ssh keypair gpg --symetric encrypted. (password is `Rouge1`)
 
 ## Requirements
 
