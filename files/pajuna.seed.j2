@@ -85,7 +85,7 @@ d-i pkgsel/language-packs                                   multiselect en
 d-i pkgsel/upgrade                                          select      full-upgrade
 d-i pkgsel/update-policy                                    select      unattended-upgrades
 d-i pkgsel/updatedb                                         boolean     true
-d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev git syslinux genisoimage gpm
+d-i pkgsel/include                                          string      python python-pip python-jinja2 python-dev git syslinux genisoimage gpm software-properties-common curl
 
 popularity-contest popularity-contest/participate           boolean     false
 
