@@ -12,9 +12,17 @@ then
   gpg --no-default-keyring --secret-keyring /dev/null --decrypt ssh.tar.gpg | tar xv -C ~/.ssh/
   rm -rf /home/{{ UserName }}/.gnupg
 fi
-git clone {{ Private_Pajuna_Laptop_Repo }} /home/{{ UserName }}/.ansible
+rm -rf /home/{{ UserName }}/.ansible
+echo "You should now start an ssh-agent and add your key to it."
+echo ""
+echo "#eval \"\\\$(ssh-agent -s)\""
+echo "# ssh-add"
+echo "#"
 EOS
 
 chmod 0700 /home/{{ UserName }}/pajuna_bootstrap.sh
 chown {{ UserName }}:{{ UserName }} /home/{{ UserName }}/pajuna_bootstrap.sh
 
+apt-add-repository -y ppa:ansible/ansible
+apt-get update
+apt-get -y install ansible
