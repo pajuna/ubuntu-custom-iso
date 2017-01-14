@@ -41,6 +41,12 @@
         src: "../files/menu.c32"
         dest: "tmpbuild/newiso/isolinux/"
 
+    - name: Customising grub2 - tuning menu
+      become: true
+      template:
+        src: "../files/grub.cfg.j2"
+        dest: "tmpbuild/newiso/boot/grub/grub.cfg"
+
     - name: Customising syslinux - tuning menu
       become: true
       template:
