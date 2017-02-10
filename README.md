@@ -14,6 +14,7 @@ The following requirements should be installed:
 
   * git
   * isolinux
+  * syslinux-utils
   * genisoimage
   * python
   * python-pip
