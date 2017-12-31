@@ -12,14 +12,14 @@ LvmOneEncDisk ::
     format{ }
 .
 
-350 50 351 ext4
+350 50 351 ext2
 		primary{ }
 		bootable{ }
 		mountpoint{ /boot }
 		method{ format }
 		format{ }
 		use_filesystem{ }
-		filesystem{ ext4 }
+		filesystem{ ext2 }
 .
 
 20480 50 20481 ext4
