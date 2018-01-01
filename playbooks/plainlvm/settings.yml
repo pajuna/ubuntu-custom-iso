@@ -1,0 +1,23 @@
+---
+
+src_iso: "ubuntu-16.04.3-server-amd64.iso"
+dst_iso: "ubuntu-16.04.3-jeos-amd64.iso"
+
+language: "en"
+country: "AU"
+locale: "en_AU.UTF-8"
+supported_locales:
+  - "en_AU"
+timezone: "Australia/Sydney"
+utc: true
+
+hostname: "hereford"
+domain: "lunix.lan"
+
+UserFullName: "Mick Pollard"
+UserName: "lunix"
+
+preseed_file: "pajuna-noluks.seed"
+partitions_file: "LvmOneDisk.partman"
+
+cleanup: true

@@ -44,10 +44,8 @@ d-i clock-setup/ntp                                         boolean     false
 
 d-i partman-auto/disk                                       string      /dev/nvme0n1
 d-i partman-auto/purge_lvm_from_device                      boolean     true
-d-i partman-crypto/weak_passphrase                          boolean     true
-d-i partman-auto/method                                     string      crypto
-d-i partman-crypto/passphrase                               password    {{ DiskCryptPassword }}
-d-i partman-crypto/passphrase-again                         password    {{ DiskCryptPassword }}
+d-i partman-auto/method                                     string      lvm
+
 d-i partman-auto-lvm/new_vg_name                            string      laptop
 d-i partman-auto-lvm/guided_size                            string      max
 d-i partman-auto/expert_recipe_file                         string      /cdrom/custom/{{ partitions_file }}

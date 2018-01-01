@@ -1,7 +1,7 @@
 ---
 
-src_iso: "ubuntu-14.04.5-server-amd64.iso"
-dst_iso: "ubuntu-14.04.5-jeos-amd64.iso"
+src_iso: "ubuntu-16.04.3-server-amd64.iso"
+dst_iso: "ubuntu-16.04.3-jeos-amd64.iso"
 
 language: "en"
 country: "AU"
@@ -11,7 +11,7 @@ supported_locales:
 timezone: "Australia/Sydney"
 utc: true
 
-hostname: "boran"
+hostname: "hereford"
 domain: "lunix.lan"
 
 UserFullName: "Mick Pollard"
@@ -19,6 +19,6 @@ UserName: "lunix"
 DiskCryptPassword: f00b4r
 
 preseed_file: "pajuna.seed"
-partitions_file: "LvmOneEncDisk.partman"
+partitions_file: "LvmOneDisk.partman"
 
 cleanup: true
