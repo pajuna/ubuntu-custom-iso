@@ -94,7 +94,8 @@ popularity-contest popularity-contest/participate           boolean     false
 d-i preseed/late_command                                    string      {{ preseed_late_command }}
 
 # grub boot loader
-d-i grub-installer/only_debian                              boolean     false
+d-i grub-installer/only_debian                              boolean     true
+d-i grub-installer/force-efi-extra-removable                boolean     true
 d-i grub-installer/with_other_os                            boolean     true
 d-i grub-installer/bootdev                                  string      /dev/nvme0n1
 
