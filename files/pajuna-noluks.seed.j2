@@ -98,10 +98,6 @@ d-i grub-installer/only_debian                              boolean     false
 d-i grub-installer/with_other_os                            boolean     true
 d-i grub-installer/bootdev                                  string      /dev/nvme0n1
 
-# X config
-xserver-xorg xserver-xorg/config/device/driver              select      vesa
-xserver-xorg xserver-xorg/autodetect_monitor                boolean     true
-
 # finish installation
 d-i finish-install/reboot_in_progress                       note
 d-i finish-install/keep-consoles                            boolean     false
