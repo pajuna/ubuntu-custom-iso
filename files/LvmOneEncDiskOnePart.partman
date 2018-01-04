@@ -11,7 +11,7 @@ LvmOneEncDisk ::
 20480 50 1000000000 ext4 $lvmok{ }
         mountpoint{ / }
         lv_name{ slash }
-        in_vg { laptop }
+        in_vg { vg0 }
         method{ format }
         format{ }
         use_filesystem{ }
