@@ -57,11 +57,11 @@
       register: sshtarball
 
     - set_fact:
-        preseed_late_command: "cp /cdrom/custom/postinstall.sh /target/tmp/; in-target sh /tmp/postinstall.sh"
+        preseed_late_command: "cp /cdrom/custom/postinstall.sh /target/tmp/; in-target sed -i -e '/GRUB_HIDDEN_TIMEOUT=/s/^/#/g' /etc/default/grub; in-target sed -i -e '/GRUB_HIDDEN_TIMEOUT_QUIET=/s/^/#/g' /etc/default/grub; in-target update-grub; in-target sh /tmp/postinstall.sh;"
         when: sshtarball.stat.exists == False
 
     - set_fact:
-        preseed_late_command: "cp /cdrom/custom/postinstall.sh /target/tmp/; cp /cdrom/custom/ssh.tar.gpg /target/home/{{ UserName }}; in-target sh /tmp/postinstall.sh"
+        preseed_late_command: "cp /cdrom/custom/postinstall.sh /target/tmp/; cp /cdrom/custom/ssh.tar.gpg /target/home/{{ UserName }}; in-target sed -i -e '/GRUB_HIDDEN_TIMEOUT=/s/^/#/g' /etc/default/grub; in-target sed -i -e '/GRUB_HIDDEN_TIMEOUT_QUIET=/s/^/#/g' /etc/default/grub; in-target update-grub; in-target sh /tmp/postinstall.sh"
       when: sshtarball.stat.exists == True
 
     - name: Copy postinstall script to iso
