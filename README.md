@@ -2,7 +2,7 @@
 
 ## AIM
 
-To automatically install just enough Ubuntu Server LTS (JeOS) to my workstation/server, with optional full disk encryption, so that I can then use Ansible + [pajuna](https://github.com/pajuna/Ubuntu-LTS) to build out a complete system/workstation.
+To remaster the Ubuntu 16.04 Server iso into an automatic installer with just enough Ubuntu Server LTS (JeOS) for my workstation/server, with optional full disk encryption, so that I can then use Ansible + [pajuna](https://github.com/pajuna/Ubuntu-LTS) to build out a complete system/workstation.
 
 ## Repo Contents
 
