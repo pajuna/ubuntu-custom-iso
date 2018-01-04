@@ -100,7 +100,7 @@ d-i grub-installer/bootdev                                  string      /dev/nvm
 
 # finish installation
 d-i finish-install/reboot_in_progress                       note
-d-i finish-install/keep-consoles                            boolean     false
+d-i finish-install/keep-consoles                            boolean     true
 d-i cdrom-detect/eject                                      boolean     false
 d-i debian-installer/exit/halt                              boolean     false
 d-i debian-installer/exit/poweroff                          boolean     false
