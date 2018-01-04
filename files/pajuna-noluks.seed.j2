@@ -60,6 +60,10 @@ d-i partman-lvm/confirm                                     boolean     true
 d-i partman-lvm/confirm_nooverwrite                         boolean     true
 d-i partman-basicfilesystems/no_swap                        boolean     false
 d-i partman/confirm_write_new_label                         boolean     true
+
+## Force EFI incase old BIOS install is detected on disk
+d-i partman-efi/non_efi_system                              boolean     true
+
 d-i partman/choose_partition                                select      finish
 d-i partman/confirm                                         boolean     true
 d-i partman/confirm_nooverwrite                             boolean     true
