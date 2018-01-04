@@ -9,7 +9,7 @@ default install
 MENU TITLE Boot Menu
 
 label install
-  menu label ^Autoinstall Ubuntu JeOS
+  menu label ^Autoinstall Ubuntu 16.04 HWE JeOS with BIOS
   kernel /install/vmlinuz
   append language=en country=AU locale=en_AU.UTF-8 file=/cdrom/preseed/{{ preseed_file }} initrd=/install/initrd.gz auto=true priority=high --
 
